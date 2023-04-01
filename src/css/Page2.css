@@ -1,0 +1,128 @@
+.Page2Page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.arrowBtn {
+  width: 50px;
+}
+.container {
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  width: 85vw;
+}
+.uploadArea {
+  height: 80vh;
+  width: 40vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* .uploadBox {
+  border: 1px dashed white;
+  background-color: #10afb4;
+  height: 98%;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+.txtImg {
+  height: 60vh;
+  width: 35vw;
+}
+.uploadInput {
+  display: none;
+}
+.uploadLabel {
+  height: 10vh;
+  width: 40vw;
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.resultBox {
+  border: 2px solid black;
+  width: 50vw;
+  text-align: center;
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+  font-family: "Raleway", sans-serif;
+}
+.teamContainer img {
+  height: 70vh;
+  width: 70vw;
+}
+.arrows {
+  width: 60px;
+  height: 72px;
+  left: 50%;
+  bottom: 20px;
+}
+
+.arrows path {
+  stroke: black;
+  fill: transparent;
+  stroke-width: 1px;
+  animation: arrow 2s infinite;
+  -webkit-animation: arrow 2s infinite;
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/ {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.arrows path.a1 {
+  animation-delay: -1s;
+  -webkit-animation-delay: -1s; /* Safari 和 Chrome */
+}
+
+.arrows path.a2 {
+  animation-delay: -0.5s;
+  -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
+}
+
+.arrows path.a3 {
+  animation-delay: 0s;
+  -webkit-animation-delay: 0s; /* Safari 和 Chrome */
+}
