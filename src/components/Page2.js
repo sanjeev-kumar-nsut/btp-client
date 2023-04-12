@@ -5,25 +5,31 @@ import book from "../riveImg.riv";
 import axios from "axios";
 
 function Page2() {
-  const [uploadItem, setUploadItem] = useState();
-  const handleFile = (e) => {
-    let file = e.target.files[0];
+  const [isloading, setIsLoading] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [resultData, setResultData] = useState("");
+
+  const handleFile = async (e) => {
+    setIsLoading(true);
+    let file = e.target.files;
     console.log("uploaded item : ", file);
-    setUploadItem(file);
-  };
-  const handleUpload = async (e) => {
-    console.log("file :", uploadItem);
-    let file = uploadItem;
-    let formData = new FormData();
-    formData.append("file", file);
+
+    const formData = new FormData();
+    const arr = Array.from(file);
+    arr.forEach((val, i) => {
+      formData.append(`file-${i}`, val, val.name);
+    });
+
+    console.log("sending data from react :", formData);
     await axios({
       method: "post",
       url: "http://localhost:5000/",
-      data: {
-        item: formData,
-      },
+      data: file,
     }).then((res) => {
       console.log("received data :", res.data);
+      setIsLoading(false);
+      setShowResult(true);
+      setResultData(res.data);
     });
   };
 
@@ -44,6 +50,7 @@ function Page2() {
             id="uploadBox"
             className="uploadInput"
             onChange={(e) => handleFile(e)}
+            multiple
             name="uploadBox"
           />
           <label className="uploadLabel" for="uploadBox">
@@ -56,6 +63,36 @@ function Page2() {
 
         <div className="resultBox">
           <h1>Result</h1>
+          {isloading && (
+            <div class="loader">
+              <div class="loader-container">
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+                <div class="loader-block"></div>
+              </div>
+            </div>
+          )}
+          {showResult && (
+            <div>
+              <h1>Received files :</h1>
+              {Object.values(resultData).map((val) => (
+                <h2>{val}</h2>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
